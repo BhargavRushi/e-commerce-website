@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+body{
+    background-color : #0E0528;
+    font-family: 'Montserrat';
+}
+
+
+#icons a{
+    color : #ffffff;
+}
+
+.card{
+    background-color : black;
+    color : #ffffff;
+    font-weight : bolder;
+}
+
+
+#card-transform:hover{
+    transform : scale(1.05);
+}
+
+.button{
+    background-image: linear-gradient(to right,#8B28C7,#5F36FA);
+    font-weight : bolder;
+    border : none;
+    color : #ffffff;
+}
+
+.button:hover{
+    transform : scale(1.05);
+    color : #ffffff;
+}
+
+.expand li{
+    font-weight : bolder;
+}
+
+#foot{
+    background-color : #4B0082;
+    display : flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+#car1 h1{
+    color : #ffffff;
+    font-weight : bolder;
+}
+
+#headstyle{
+    font-weight : bolder;
+    background : -webkit-linear-gradient(#8B28C7,#5F36FA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#splText{
+    font-weight : bolder;
+    background : -webkit-linear-gradient(#8B28C7,#5F36FA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#display_row{
+    justify-content: space-evenly;
+}

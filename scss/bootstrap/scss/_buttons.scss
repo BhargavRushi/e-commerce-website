@@ -1,0 +1,142 @@
+// stylelint-disable selector-no-qualifying-type
+
+//
+// Base styles
+//
+
+.btn button {
+  display: inline-block;
+  font-family: $btn button-font-family;
+  font-weight: $btn button-font-weight;
+  color: $body-color;
+  text-align: center;
+  text-decoration: if($link-decoration == none, null, none);
+  white-space: $btn button-white-space;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  border: $btn button-border-width solid transparent;
+  @include button-size($btn button-padding-y, $btn button-padding-x, $btn button-font-size, $btn button-line-height, $btn button-border-radius);
+  @include transition($btn button-transition);
+
+  @include hover() {
+    color: $body-color;
+    text-decoration: none;
+  }
+
+  &:focus,
+  &.focus {
+    outline: 0;
+    box-shadow: $btn button-focus-box-shadow;
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    opacity: $btn button-disabled-opacity;
+    @include box-shadow(none);
+  }
+
+  &:not(:disabled):not(.disabled) {
+    cursor: if($enable-pointer-cursor-for-buttons, pointer, null);
+
+    &:active,
+    &.active {
+      @include box-shadow($btn button-active-box-shadow);
+
+      &:focus {
+        @include box-shadow($btn button-focus-box-shadow, $btn button-active-box-shadow);
+      }
+    }
+  }
+}
+
+// Future-proof disabling of clicks on `<a>` elements
+a.btn button.disabled,
+fieldset:disabled a.btn button {
+  pointer-events: none;
+}
+
+
+//
+// Alternate buttons
+//
+
+@each $color, $value in $theme-colors {
+  .btn button-#{$color} {
+    @include button-variant($value, $value);
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .btn button-outline-#{$color} {
+    @include button-outline-variant($value);
+  }
+}
+
+
+//
+// Link buttons
+//
+
+// Make a button look and behave like a link
+.btn button-link {
+  font-weight: $font-weight-normal;
+  color: $link-color;
+  text-decoration: $link-decoration;
+
+  @include hover() {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:focus,
+  &.focus {
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn button-link-disabled-color;
+    pointer-events: none;
+  }
+
+  // No need for an active state here
+}
+
+
+//
+// Button Sizes
+//
+
+.btn button-lg {
+  @include button-size($btn button-padding-y-lg, $btn button-padding-x-lg, $btn button-font-size-lg, $btn button-line-height-lg, $btn button-border-radius-lg);
+}
+
+.btn button-sm {
+  @include button-size($btn button-padding-y-sm, $btn button-padding-x-sm, $btn button-font-size-sm, $btn button-line-height-sm, $btn button-border-radius-sm);
+}
+
+
+//
+// Block button
+//
+
+.btn button-block {
+  display: block;
+  width: 100%;
+
+  // Vertically space out multiple block buttons
+  + .btn button-block {
+    margin-top: $btn button-block-spacing-y;
+  }
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn button-block {
+    width: 100%;
+  }
+}
